@@ -1,5 +1,5 @@
 package interviewQA.StackAndQueues;
-
+import java.util.Stack;
 public class NextGreaterElementI {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
         int n1 = nums1.length;
@@ -33,5 +33,32 @@ public class NextGreaterElementI {
         }
 
         return arr;
+    }
+    
+    public int[] nextGreaterElementOptimised(int[] nums1, int[] nums2) {
+        int[] nge = ngeForNums2(nums2);
+        int[] ans = new int[nums1.length];
+        for(int i = 0; i < nums1.length; i++){
+            for(int j = 0; j < nums2.length; j++){
+                if(nums1[i] == nums2[j]){
+                    ans[i] = nge[j];
+                }
+            }
+        }
+        return ans;
+    }
+
+    public int[] ngeForNums2(int[] nums2){
+        Stack<Integer> st = new Stack<>();
+        int n2 = nums2.length;
+        int[] nge = new int[n2];
+        for(int i = n2-1; i >= 0; i--){
+            while(!st.isEmpty() && st.peek() <= nums2[i]){
+                st.pop();
+            }
+            nge[i] = st.isEmpty() ? -1 : st.peek();
+            st.push(nums2[i]);
+        }
+        return nge;
     }
 }
