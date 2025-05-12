@@ -40,7 +40,7 @@ public class TrappingRainWater {
         int r = n-1;
         int leftMax = 0, rightMax = 0;
         while(l < r){
-            if(arr[l] < arr[r]){
+            if(arr[l] <= arr[r]){
                 if(leftMax > arr[l]){
                     total += leftMax - arr[l];
                 }else{
