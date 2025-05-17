@@ -4,6 +4,7 @@ import java.util.Stack;
 
 public class LargestRectangleInHistogram {
 
+    //This is the optimal approach
     public int largestRectangleArea(int[] arr) {
         Stack<Integer> st = new Stack<>();
         int maxi = 0;
